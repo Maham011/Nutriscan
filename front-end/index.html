@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<!--
+  
+NutriScan EDA Dashboard (Person 4)
+  
+----------------------------------
+  
+HOW TO OPEN: double-click index.html. It works offline.
+  
+The page has 3 other files next to it:
+    
+style.css  -> colours, spacing, layout (how it LOOKS)
+    
+data.js    -> the 85 products from cleaned_food_data.csv (the DATA)
+    
+script.js  -> calculations, charts, search (what it DOES)
+-->
+<html lang="en">
+<head>
+  
+<meta charset="UTF-8">
+  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+<title>NutriScan EDA Dashboard</title>
+  
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+<!-- ===== TOP BAR ===== -->
+  
+<header class="topbar">
+    
+<div class="brand">
+      
+<span class="logo">N</span>
+      
+<div>
+        
+<h1>NutriScan</h1>
+        
+<p class="subtitle">Exploratory Data Analysis of 85 food products (values per 100 g)</p>
+      
+</div>
+    
+</div>
+    
+<nav class="menu">
+      
+<a href="#overview">Overview</a>
+      
+<a href="#charts">Charts</a>
+      
+<a href="#stats">Statistics</a>
+      
+<a href="#top">Top products</a>
+      
+<a href="#search">Search</a>
+      
+<a href="#findings">Findings</a>
+    
+</nav>
+  
+</header>
+  
+<main>
+    
+<!-- ===== 1. OVERVIEW: KEY NUMBERS ===== -->
+    
+<section id="overview">
+      
+<h2>Overview</h2>
+      
+<!-- script.js fills these 4 cards with numbers it calculates -->
+      
+<div class="cards">
+        
+<div class="card"><p class="card-label">Products analysed</p><p class="card-value" id="kpi-products">-</p></div>
+        
+<div class="card"><p class="card-label">Food groups</p><p class="card-value" id="kpi-groups">-</p></div>
+        
+<div class="card"><p class="card-label">Average sugar</p><p class="card-value" id="kpi-sugar">-</p></div>
+        
+<div class="card"><p class="card-label">Sugar vs calories (r)</p><p class="card-value" id="kpi-corr">-</p></div>
+      
+</div>
+    
+</section>
+    
+<!-- ===== 2. CHARTS ===== -->
+    
+<section id="charts">
+      
+<h2>Charts</h2>
+      
+<p class="hint">Move your mouse over a bar or dot to see the exact value.</p>
+      
+<div class="chart-grid">
+        
+<article class="panel">
+          
+<h3>1. Average sugar by food group</h3>
+          
+<div class="chart" id="chart-sugar"></div>
+          
+<p class="explain"><b>What it shows:</b> Spreads, Biscuits and Chocolate have the most sugar on average. Waters have none.</p>
+        
+</article>
+        
+<article class="panel">
+          
+<h3>2. Average calories by food group</h3>
+          
+<div class="chart" id="chart-calories"></div>
+          
+<p class="explain"><b>What it shows:</b> Chocolate and Spreads have the most energy, because they are high in fat and sugar. Drinks and Waters are lowest.</p>
+        
+</article>
+        
+<article class="panel">
+          
+<h3>3. Sugar distribution (histogram)</h3>
+          
+<div class="chart" id="chart-hist"></div>
+          
+<p class="explain"><b>What it shows:</b> Most products have less than 10 g sugar. A few products (mostly spreads) have a lot. This is called a <i>right-skewed</i> distribution.</p>
+        
+</article>
+        
+<article class="panel">
+          
+<h3>4. Sugar vs calories (scatter plot)</h3>
+          
+<label class="inline">Highlight a group:
+            
+<select id="scatter-group"><option value="">All groups</option></select>
+          
+</label>
+          
+<div class="chart" id="chart-scatter"></div>
+          
+<p class="explain" id="scatter-text"><b>What it shows:</b> Each dot is one product.</p>
+        
+</article>
+        
+<article class="panel wide">
+          
+<h3>5. Missing values per column</h3>
+          
+<div class="chart short" id="chart-missing"></div>
+          
+<p class="explain"><b>What it shows:</b> Very few values are missing (3.5% at most), so the data is good enough to analyse. Missing values are skipped in averages, not replaced.</p>
+        
+</article>
+      
+</div>
+    
+</section>
+    
+<!-- ===== 3. DESCRIPTIVE STATISTICS TABLE ===== -->
+    
+<section id="stats">
+      
+<h2>Descriptive statistics</h2>
+      
+<p class="hint">Mean = average. Median = the middle value when sorted. If the mean is much bigger than the median, a few very high values are pulling the average up.</p>
+      
+<div class="panel table-wrap">
+        
+<table id="stats-table"></table>
+      
+</div>
+      
+<h3 class="table-title">Averages by food group</h3>
+      
+<div class="panel table-wrap">
+        
+<table id="group-table"></table>
+      
+</div>
+    
+</section>
+    
+<!-- ===== 4. TOP 5 PRODUCTS ===== -->
+    
+<section id="top">
+      
+<h2>Top 5 products</h2>
+      
+<div class="buttons" id="top-buttons">
+        
+<!-- script.js adds one button per nutrient here -->
+      
+</div>
+      
+<div class="panel">
+        
+<ol class="top-list" id="top-list"></ol>
+      
+</div>
+    
+</section>
+    
+<!-- ===== 5. PRODUCT SEARCH ===== -->
+    
+<section id="search">
+      
+<h2>Search products</h2>
+      
+<div class="filters">
+        
+<input type="search" id="search-box" placeholder="Type a product or brand name...">
+        
+<select id="group-filter"><option value="">All food groups</option></select>
+        
+<span class="count" id="result-count"></span>
+      
+</div>
+      
+<p class="hint">Click a column title to sort. "-" means the value is missing.</p>
+      
+<div class="panel table-wrap">
+        
+<table id="product-table" class="sortable"></table>
+      
+</div>
+    
+</section>
+    
+<!-- ===== 6. KEY FINDINGS ===== -->
+    
+<section id="findings">
+      
+<h2>Key findings</h2>
+      
+<ol class="findings" id="findings-list">
+        
+<!-- script.js writes the findings using the calculated numbers -->
+      
+</ol>
+      
+<p class="note">This is a data analysis for a university project. It is not medical or diet advice.</p>
+    
+</section>
+  
+</main>
+  
+<footer>NutriScan &middot; Person 4: EDA &amp; Visualization &middot; Data: Open Food Facts</footer>
+  
+<!-- The tooltip box that follows the mouse on charts -->
+  
+<div id="tooltip" class="tooltip"></div>
+  
+<!-- data.js MUST load before script.js, because script.js uses PRODUCTS -->
+  
+<script src="data.js"></script>
+  
+<script src="script.js"></script>
+</body>
+</html>
