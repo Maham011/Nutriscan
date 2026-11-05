@@ -1,0 +1,5 @@
+﻿product_code,product_name,brand,category,energy_kcal,sugars_g,proteins_g,carbohydrates_g,fat_g,saturated_fat_g,salt_g,ingredients,nutrition_grade,validation_error
+6111242100985,,Jaouda,"Yogurts, Fromages blancs natures",101.0,0.0,7.6,4.2,6.0,3.5,0.0,"lait ecremé, créme, ferments lactiques. Matière grasse: 6% Poids net:90g",b,product_name: Input should be a valid string
+6111035000027,,Sidi Ali,Natural mineral waters,0.0,0.0,0.0,0.0,0.0,0.0,0.0065,Composition minérale en mg/ Résidu sec à 110°C: 186 12 t S Sodium 26 tCalciumMagnésium9 tiiSulfates 42 i3 t H Chiorures 14Potassium Bicarbonates 104 i Nitrates,a,product_name: Input should be a valid string
+6111032009665,,Salim,"Semi-skimmed milks, Fresh milks",45.0,0.0,3.0,4.8,1.5,1.0,0.0,حليب نصف دسم، 15 غ/ل من المواد الدسمة,b,product_name: Input should be a valid string
+6111128000460,,aïn Saiss,Natural mineral waters,,,,,,,0.002,eau,a,product_name: Input should be a valid string
