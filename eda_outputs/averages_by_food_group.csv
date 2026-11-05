@@ -1,0 +1,10 @@
+food_group,products,avg_sugar_g,avg_calories_kcal,avg_protein_g
+Spreads,11,21.4,572.5,11.8
+Biscuits,10,19.6,461.5,7.8
+Chocolate,4,16.2,574.0,10.9
+Cereals,6,13.1,391.9,9.7
+Breads,11,4.0,316.1,10.0
+Drinks,5,3.7,23.7,0.3
+Dairy,21,3.2,143.4,6.2
+Other,7,2.8,337.3,6.0
+Waters,10,0.0,0.0,0.0
